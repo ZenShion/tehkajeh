@@ -1,0 +1,443 @@
+/* ========================================
+   SPACEX-INSPIRED DESIGN SYSTEM (STRICT)
+   Berdasarkan DESIGN.md
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+:root {
+  /* Canvas */
+  --canvas-night: #000000;
+  --canvas-night-soft: #0a0a0a;
+  
+  /* Text */
+  --on-primary: #ffffff;
+  --on-primary-mute: #f0f0fa;
+  
+  /* Chrome */
+  --hairline-on-dark: #3a3a3f;
+  
+  /* Spacing */
+  --xxs: 4px;  --xs: 8px;  --sm: 12px;
+  --md: 16px;  --lg: 18px; --xl: 24px;
+  --xxl: 32px; --huge: 48px;
+  
+  /* Typography Tokens */
+  --font-display: 'Inter', 'Arial Narrow', Arial, sans-serif;
+  --font-ui: 'Inter', Arial, sans-serif;
+  
+  /* Display */
+  --display-xxl: 80px; --lh-display-xxl: 0.95; --ls-display-xxl: 1.6px;
+  --display-xl: 60px;  --lh-display-xl: 1.2;  --ls-display-xl: 1.2px;
+  --display-lg: 48px;  --lh-display-lg: 1.25; --ls-display-lg: 0.96px;
+  
+  /* UI */
+  --body-lg: 16px; --lh-body-lg: 1.7;
+  --body-md: 16px; --lh-body-md: 1.5;
+  --button-cap: 13.008px; --lh-btn: 0.94; --ls-btn: 1.17px;
+  --micro-cap: 12px; --lh-micro: 2.0; --ls-micro: 0.96px;
+  --caption: 13.008px; --lh-caption: 1.5;
+  
+  /* Shapes */
+  --rounded-pill: 32px;
+}
+
+/* Reset & Base */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--canvas-night);
+  color: var(--on-primary);
+  font-family: var(--font-ui);
+  font-size: var(--body-md);
+  line-height: var(--lh-body-md);
+  letter-spacing: 0.32px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========================================
+   NAVIGATION - Transparent Overlay
+   ======================================== */
+.menu {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  background: transparent;
+  z-index: 1000;
+  padding: var(--xl) var(--xxl);
+  display: flex;
+  justify-content: center;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  gap: var(--xxl);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.menu a {
+  font-family: var(--font-display);
+  font-size: var(--micro-cap);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-micro);
+  line-height: var(--lh-micro);
+  color: var(--on-primary);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.menu a:hover { opacity: 0.7; }
+
+/* ========================================
+   SECTIONS - Full-Bleed Bands
+   ======================================== */
+section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--canvas-night);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--huge) var(--xl);
+  overflow: hidden;
+}
+
+section:nth-child(odd) { background-color: var(--canvas-night-soft); }
+
+/* Background Image Grading */
+section.hero::before,
+section.galeri::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.6; /* Grading manual karena no scrim allowed */
+  z-index: 0;
+  filter: contrast(1.1) brightness(0.8);
+}
+
+section.hero::before { background-image: url('gambar/hero-bg.jpg'); }
+section.galeri::before { background-image: url('gambar/galeri-bg.jpg'); }
+
+section > * { position: relative; z-index: 1; }
+
+/* ========================================
+   TYPOGRAPHY - Spacex Rules
+   ======================================== */
+h1, h2, h3, .btn-ghost { text-transform: uppercase; }
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--display-xxl);
+  font-weight: 700;
+  line-height: var(--lh-display-xxl);
+  letter-spacing: var(--ls-display-xxl);
+  text-align: center;
+  margin-bottom: var(--md);
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: var(--display-xl);
+  font-weight: 700;
+  line-height: var(--lh-display-xl);
+  letter-spacing: var(--ls-display-xl);
+  text-align: center;
+  margin-bottom: var(--xxl);
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-size: var(--display-lg);
+  font-weight: 700;
+  line-height: var(--lh-display-lg);
+  letter-spacing: var(--ls-display-lg);
+  margin-bottom: var(--lg);
+}
+
+p {
+  font-size: var(--body-md);
+  line-height: var(--lh-body-md);
+  color: var(--on-primary-mute);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ========================================
+   COMPONENTS
+   ======================================== */
+/* Ghost Pill Button */
+.btn-ghost {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: var(--button-cap);
+  font-weight: 700;
+  letter-spacing: var(--ls-btn);
+  line-height: var(--lh-btn);
+  color: var(--on-primary);
+  background: transparent;
+  border: 1px solid var(--on-primary);
+  border-radius: var(--rounded-pill);
+  padding: var(--lg) var(--xl);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin-top: var(--xl);
+}
+
+.btn-ghost:hover {
+  background: var(--on-primary);
+  color: var(--canvas-night);
+}
+
+/* ========================================
+   SECTION PROFIL - CENTERED & BALANCED
+   ======================================== */
+#profil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--huge) var(--xl);
+}
+
+#profil h2 {
+  margin-bottom: var(--xxl);
+}
+
+.biodata-list {
+  list-style: none;
+  max-width: 800px; /* Kolom baca optimal agar tidak melebar */
+  width: 100%;
+  margin: 0 auto;
+  border-top: 1px solid var(--hairline-on-dark);
+}
+
+.biodata-list li {
+  padding: var(--xl) var(--md);
+  border-bottom: 1px solid var(--hairline-on-dark);
+  display: flex;
+  flex-direction: column;
+  gap: var(--xs);
+  align-items: center; /* Menyeimbangkan posisi secara horizontal */
+  text-align: center;  /* Menghilangkan kesan "miring ke kiri" */
+}
+
+/* Ruang ekstra khusus untuk deskripsi panjang */
+.biodata-list li:last-child {
+  padding: var(--xxl) var(--xl);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: var(--lh-body-lg);
+  font-size: var(--body-lg);
+  text-align: center;
+}
+
+.biodata-list strong {
+  font-size: var(--button-cap);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-btn);
+  color: var(--on-primary);
+}
+
+/* Hobi & Cita-cita Grid */
+.hobi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--xxl);
+  max-width: 1000px;
+  margin-top: var(--xl);
+}
+
+.box {
+  background: transparent;
+  border: 1px solid var(--hairline-on-dark);
+  padding: var(--xl);
+}
+
+.box ul {
+  list-style: none;
+  margin-top: var(--sm);
+}
+
+.box ul li {
+  padding: var(--xs) 0;
+  color: var(--on-primary-mute);
+}
+
+/* Full-Bleed Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--xs);
+  width: 100%;
+  max-width: 1400px;
+  margin-top: var(--xxl);
+}
+
+.gallery img {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(20%) contrast(1.05);
+  transition: filter 0.3s;
+}
+
+.gallery img:hover { filter: grayscale(0%) contrast(1.1); }
+
+/* Kontak */
+.kontak-list {
+  list-style: none;
+  text-align: center;
+  margin-top: var(--xl);
+}
+
+.kontak-list li {
+  padding: var(--sm) 0;
+  font-size: var(--body-lg);
+  line-height: var(--lh-body-lg);
+  color: var(--on-primary);
+}
+
+/* Footer */
+footer {
+  background: var(--canvas-night);
+  border-top: 1px solid var(--hairline-on-dark);
+  padding: var(--xxl) var(--xl);
+  text-align: center;
+}
+
+footer p {
+  font-size: var(--caption);
+  line-height: var(--lh-caption);
+  color: var(--on-primary-mute);
+  letter-spacing: 0;
+}
+
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+   ======================================== */
+@media (max-width: 1279px) {
+  :root { --display-xxl: 64px; --ls-display-xxl: 1.3px; }
+}
+
+@media (max-width: 960px) {
+  :root { --display-xxl: 60px; --display-xl: 48px; }
+  .menu ul { gap: var(--xl); }
+  .gallery { grid-template-columns: 1fr; }
+  .gallery img { height: 40vh; }
+}
+
+@media (max-width: 767px) {
+  :root { --display-xxl: 48px; --display-xl: 40px; --display-lg: 36px; }
+  section { min-height: auto; padding: var(--xxl) var(--md); }
+  .menu { padding: var(--lg) var(--md); }
+  .menu ul { flex-direction: column; gap: var(--sm); align-items: center; }
+  .hobi-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  :root { --display-xxl: 40px; }
+  h1 { letter-spacing: 0.96px; }
+  .btn-ghost { padding: var(--md) var(--xl); }
+}
+
+/* ========================================
+   HOVER EFFECTS - STRICT DESIGN.md COMPLIANCE
+   ======================================== */
+
+/* 1. MENU NAVIGASI (Sesuai Bagian K) */
+.menu a {
+  position: relative;
+  transition: opacity 0.2s ease;
+}
+
+/* Garis bawah halus yang memanjang saat hover */
+.menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 1px;
+  background-color: var(--on-primary);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu a:hover {
+  opacity: 0.85;
+}
+
+.menu a:hover::after {
+  width: 100%;
+}
+
+/* 2. GHOST PILL BUTTON (CTA Signature) */
+.btn-ghost {
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-ghost:hover {
+  background-color: var(--on-primary);
+  color: var(--canvas-night);
+  transform: translateY(-2px);
+}
+
+/* 3. GALERI FOTO (Full-Bleed Industrial Feel) */
+.gallery img {
+  filter: grayscale(100%) contrast(1.1) brightness(0.9);
+  transition: filter 0.4s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.gallery img:hover {
+  filter: grayscale(0%) contrast(1.05) brightness(1);
+  transform: scale(1.015);
+}
+
+/* 4. BIODATA & KONTAK LIST */
+.biodata-list li,
+.kontak-list li {
+  transition: background-color 0.2s ease, padding-left 0.2s ease;
+}
+
+.biodata-list li:hover,
+.kontak-list li:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+  padding-left: var(--sm);
+}
+
+/* 5. HOBI / CITA-CITA BOX */
+.box {
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.box:hover {
+  border-color: var(--on-primary);
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* 6. LINK INLINE (Email/WhatsApp) */
+a[href^="mailto:"],
+a[href^="https://wa.me"] {
+  color: var(--on-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s ease;
+}
+
+a[href^="mailto:"]:hover,
+a[href^="https://wa.me"]:hover {
+  text-decoration-color: rgba(255, 255, 255, 0.5);
+}
